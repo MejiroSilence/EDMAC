@@ -1,0 +1,44 @@
+# --- QMIX specific parameters ---
+
+# use epsilon greedy action selector
+action_selector: "epsilon_greedy"
+epsilon_start: 1.0
+epsilon_finish: 0.05
+epsilon_anneal_time: 50000 # 500000 for 6h_vs_8z
+
+runner: "episode"
+#batch_size_run: 8 # batch_size_run=4, buffer_size = 2500, batch_size=64  for 3s5z_vs_3s6z
+buffer_size: 5000 
+batch_size: 32
+optimizer: 'adam'
+
+# update the target network every {} episodes
+target_update_interval: 200
+
+# use the Q_Learner to train
+mac: "bs1_mac"
+agent: "bs1t"
+agent_output_type: q
+
+learner: "bs1_learner"
+mixer: "qmix"
+mixing_embed_dim: 32
+hypernet_embed: 64
+hypernet_layers: 2
+lr: 0.0005 # Learning rate for agents
+optimizer: 'adam'
+
+name: "bs1_1_05"
+
+gru_with_id: True
+
+state_repre_dim: 8
+msg_dim: 8
+attn_head_num: 1
+attn_embed_dim: 16
+
+#loss
+loss_weight_state: 0.5
+
+noise: False
+noise_norm: 0.02
